@@ -7,7 +7,7 @@ using Data;
 
 namespace NamnAppUI
 {
-    class Program
+    public class Program
     {
         public static UserRepository UserRep = new UserRepository();
 
@@ -50,17 +50,28 @@ namespace NamnAppUI
             Console.WriteLine("3. Search for user");
             Console.WriteLine("4. Delete user");
             Console.WriteLine("5. Change user");
-            Console.WriteLine("5. Exit");
+            Console.WriteLine("6. Exit");
         }
 
         public static void AddUser()
         {
-            // TODO - Implement method
+            Console.WriteLine("Firstname: ");
+            var first = Console.ReadLine(); // varför "var" här och inte string?
+            Console.WriteLine("Lastname: ");
+            var last = Console.ReadLine();
+
+            var user = UserRep.Create(first, last);
+
+            if (user != null)
+                Console.WriteLine("User was created.");
+            else
+                Console.WriteLine("User could not be created.");
         }
 
         public static void ListUser()
         {
             // TODO - Implement method
+            Action<string, string> printTableRow = (a, b) => Console.WriteLine(String.Format("")); // Ej klar
         }
     }
 }
