@@ -8,11 +8,13 @@ namespace Data
 {
     public class UserModel
     {
+        public int Id { get; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public UserModel(string firstname, string lastname)
+        public UserModel(int id, string firstname, string lastname)
         {
+            Id = id;
             FirstName = firstname;
             LastName = lastname;
         }
