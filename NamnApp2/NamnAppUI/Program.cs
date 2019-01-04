@@ -9,10 +9,13 @@ namespace NamnAppUI
 {
     public class Program
     {
-        public static UserRepository UserRep = new UserRepository();
+        public static UserRepository UserRep = new UserRepository(); // Vad för kod skriver jag här? Varför inte i Main?
+        //public static TextConnector tConnector = new TextConnector();
 
         public static void Main(string[] args)
         {
+            //LoadUsers();
+
             string key;
             do
             {
@@ -24,7 +27,7 @@ namespace NamnAppUI
                 {
                     case "1":
                         AddUser();
-                        Console.ReadLine(); // Varför denna raden här?
+                        Console.ReadLine();
                         break;
                     case "2":
                         ListUser();
@@ -53,6 +56,14 @@ namespace NamnAppUI
             } while (key != "6");
 
         }
+
+        //public static void LoadUsers()
+        //{
+        //    if (tConnector.lines.Any())
+        //    {
+        //        UserRep = tConnector.LoadFile();
+        //    }
+        //}
 
         public static void DisplayMenu()
         {

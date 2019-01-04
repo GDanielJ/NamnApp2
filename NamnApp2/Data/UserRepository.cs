@@ -24,9 +24,14 @@ namespace Data
 
         public UserModel Create(string firstname, string lastname)
         {
-            var user = new UserModel((_users.Count + 1), firstname, lastname);
+            var user = new UserModel((_users.Count + 1), firstname, lastname); 
             _users.Add(user);
             return user;
+        }
+
+        public void AddExisting(UserModel existingUser)
+        {
+            _users.Add(existingUser);
         }
 
         public void Delete(int id) => _users.RemoveAll(u => u.Id == id);
