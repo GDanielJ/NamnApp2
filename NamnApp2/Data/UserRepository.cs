@@ -16,8 +16,10 @@ namespace Data
         }
 
         // Inte helt med på denna men tror jag förstår. IEnumerable gör att man kan iterera över elementen (om det är rätt ord)
-        // i _users och GetAll() returnerar innehållet i _users. I GetAll() är IEnumerable<UserModel> "returtypen". Men är
-        // IEnumberable också en datatyp, då det ser ut så, på samma sätt som int är returtyp i följande metod:
+        // i _users och GetAll() returnerar innehållet i _users. I GetAll() är IEnumerable<UserModel> "returtypen". Men
+        // är inte IEnumerable ett interface?
+        // Här verkar det som att IEnumberable också är en datatyp, då det ser ut så, på samma sätt som int är returtyp i 
+        // följande metod:
         // public int MyFunction();
         // Eller hur funkar det här?
         public IEnumerable<UserModel> GetAll() => _users; 

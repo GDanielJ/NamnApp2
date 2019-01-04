@@ -22,7 +22,6 @@ namespace Data
         public UserRepository LoadFile()
         {
             UserRepository loadedUsers = new UserRepository();
-            //List<UserModel> loadedUsers = new List<UserModel>();
 
             foreach (string line in lines)
             {
@@ -31,8 +30,23 @@ namespace Data
                 loadedUsers.AddExisting(u);
             }
 
-            return loadedUsers; // Funkar inte än. MÅste returnera UserRepository. Måste ändra i Create eller lösa på något annat sätt.
-                //Antagligen fixa ny metod i UserRepository för att lägga till existerande användare.
+            return loadedUsers; 
+        }
+
+        public int SaveFile(IEnumerable<UserModel> users)
+        {
+            int usersSaved = 0;
+            List<string> output = new List<string>();
+
+            foreach (UserModel user in users)
+            {
+                output.Add($"{user.Id},{user.FirstName},{user.LastName}");
+                usersSaved++;
+            }
+
+            File.WriteAllLines(FilePath, output);
+
+            return usersSaved;
         }
     }
 }

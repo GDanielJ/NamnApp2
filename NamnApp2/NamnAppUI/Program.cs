@@ -10,11 +10,11 @@ namespace NamnAppUI
     public class Program
     {
         public static UserRepository UserRep = new UserRepository(); // Vad för kod skriver jag här? Varför inte i Main?
-        //public static TextConnector tConnector = new TextConnector();
+        public static TextConnector tConnector = new TextConnector();
 
         public static void Main(string[] args)
         {
-            //LoadUsers();
+            LoadUsers();
 
             string key;
             do
@@ -46,6 +46,10 @@ namespace NamnAppUI
                         Console.ReadLine();
                         break;
                     case "6":
+                        SaveUsers();
+                        Console.ReadLine();
+                        break;
+                    case "7":
                         break;
                     default:
                         Console.WriteLine("Invalid command.");
@@ -53,17 +57,17 @@ namespace NamnAppUI
                         break;
                 }
 
-            } while (key != "6");
+            } while (key != "7");
 
         }
 
-        //public static void LoadUsers()
-        //{
-        //    if (tConnector.lines.Any())
-        //    {
-        //        UserRep = tConnector.LoadFile();
-        //    }
-        //}
+        public static void LoadUsers()
+        {
+            if (tConnector.lines.Any())
+            {
+                UserRep = tConnector.LoadFile();
+            }
+        }
 
         public static void DisplayMenu()
         {
@@ -74,13 +78,14 @@ namespace NamnAppUI
             Console.WriteLine("3. Search for user");
             Console.WriteLine("4. Delete user");
             Console.WriteLine("5. Change user");
-            Console.WriteLine("6. Exit");
+            Console.WriteLine("6. Save all users");
+            Console.WriteLine("7. Exit");
         }
 
         public static void AddUser()
         {
             Console.WriteLine("Firstname: ");
-            var first = Console.ReadLine(); // varför "var" här och inte string? Förstår att man kan byta ut de flesta (alla?) datatyper mot var, men varför inte skriva ut explicit?
+            var first = Console.ReadLine(); // varför "var" här och inte string? Förstår att man kan byta ut de flesta (alla?) datatyper mot var, men varför inte skriva ut explicit? Finns det nån särskild tanke bakom när man använder var?
             Console.WriteLine("Lastname: ");
             var last = Console.ReadLine();
 
@@ -94,7 +99,7 @@ namespace NamnAppUI
 
         public static void ListUser()
         {
-            Action<string, string, string> printTableRow = (a, b, c) => Console.WriteLine(String.Format("|{0,15}|{1,15}|{2,15}|", a, b, c)); // Vad gör "15" i hakparantesen här?
+            Action<string, string, string> printTableRow = (a, b, c) => Console.WriteLine(String.Format("|{0,15}|{1,15}|{2,15}|", a, b, c));
 
             var users = UserRep.GetAll();
 
@@ -180,6 +185,13 @@ namespace NamnAppUI
                     }
                 }
             }
+        }
+
+        public static void SaveUsers()
+        {
+            var users = UserRep.GetAll();
+            int nSaved = tConnector.SaveFile(users);
+            Console.WriteLine($"{nSaved} users were saved.");
         }
     }
 }
