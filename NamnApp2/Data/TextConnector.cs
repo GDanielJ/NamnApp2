@@ -9,12 +9,6 @@ namespace Data
 {
     public class TextConnector
     {
-        // Skapa metod
-        // läs data från textfil
-        // spara ner data i UserRepository, som sedan ska användas i UserRep i Program när applikationen startas upp
-
-        // metod för att skriva data till textfil
-
         private const string FilePath = @"C:\Demo\Test.txt";
 
         public List<string> lines = File.ReadAllLines(FilePath).ToList();
